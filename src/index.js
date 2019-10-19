@@ -1,9 +1,10 @@
 const Scrapper = require('./Scrapper.js')
 
-const scrapper = new Scrapper(10, 'ropczyce');
-
-(async () => {
+const getOffers = async (city, numberOfPages) => {
+    const scrapper = new Scrapper(city, numberOfPages);
     await scrapper.init();
     await scrapper.getOffers();
     await scrapper.createJSON();
-})();
+}
+
+exports.module = getOffers()

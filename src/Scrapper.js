@@ -3,13 +3,13 @@ const fs = require('fs');
 const chalk = require('chalk');
 
 class Scrapper{
-    constructor(pagesNum = 1, city = null){
+    constructor(city = undefined, pagesNum = Infinity) {
         this.browser = null
         this.page = null
         this.offers = []
         this.pagesNum = pagesNum
         this.city = city
-        this.websiteUrl = `https://www.pracuj.pl/praca/${city}`
+        this.websiteUrl = city === undefined ? 'https://www.pracuj.pl/praca/' : `https://www.pracuj.pl/praca/${city}` 
     }
 
    async init(){
@@ -31,11 +31,13 @@ class Scrapper{
                 const linkData = await offerDetails[0].$eval('.offer-details__title-link', el => el.getAttribute('href'));
                 const link = `https://www.pracuj.pl/${linkData}`;
                 const description = await offerDetails[0].$eval('.offer-labels:last-of-type', el => el.innerText);
+                const city = await offerDetails[0].$eval('.offer-labels__item', el => el.innerText)
                 return {
                     jobName,
                     company,
                     link,
-                    description
+                    description,
+                    city
                 }
             });
             await Promise.all(offersData).then(result => {
@@ -56,7 +58,10 @@ class Scrapper{
                 break
             }
         };
-        return this.offers;
+        let JSONoffers = JSON.stringify(this.offers);
+        await this.browser.close();
+        console.log(`Total offers founded: ${chalk.green(this.offers.length)}`);
+        return JSONoffers;
     };
 
     async createJSON(){
@@ -68,8 +73,6 @@ class Scrapper{
             }
             console.log(chalk.green("JSON file has been saved."));
         });
-        console.log(`Total offers founded: ${chalk.green(this.offers.length)}`);
-        await this.browser.close();
     };
 }
 
