@@ -1,5 +1,5 @@
 const url = require('url');
-const Scrapper = require('../Scrapper.js')
+const api = require('../api.js')
 
 exports.jobsRequest = async (req, res) => {
     try{
@@ -8,17 +8,17 @@ exports.jobsRequest = async (req, res) => {
         if (reqUrl.query.city) {
             city = reqUrl.query.city
         }
-        const scrapper = new Scrapper(city, 10);
-        await scrapper.init();
-        const response = await scrapper.getOffers();
+
+        const response = await api.getAllOffers('ropczyce', 10)
 
         res.statusCode = 200;
+        res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Content-Type', 'application/json');
-        res.end(JSON.stringify(response));
+        res.end(response);
     }
     catch (error) {
         res.statusCode = 500;
         res.setHeader('Content-Type', 'text/plain');
-        res.end('Oops, something went wrong :c');
+        res.end('Something went wrong...');
       }
 };

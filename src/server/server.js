@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const server = require('./controller.js');
-const port = 3000;
+const port = 3002;
 
 server.listen(port, (error)  => {
     if (error){
