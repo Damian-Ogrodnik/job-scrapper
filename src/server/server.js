@@ -6,6 +6,6 @@ server.listen(port, (error)  => {
     if (error){
         console.log(chalk.red('Something went wrong', error))
     } else {
-        console.log(chalk.green('Server is listening on port ' + port+'...'))
+        console.log(chalk.green('Server is listening on port ' + port + '...'))
     }
 })

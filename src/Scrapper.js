@@ -19,7 +19,7 @@ class ScrapperOLX {
         this.citySelector = citySelector
         this.descriptionSelector = descriptionSelector
         this.nextPageSelector = nextPageSelector
-    }
+    };
 
     async init() {
         this.browser = await puppeteer.launch({
@@ -79,7 +79,6 @@ class ScrapperOLX {
                 break
             }
         };
-        let JSONoffers = JSON.stringify(this.offers);
         await this.browser.close();
         console.log(`Total offers founded: ${chalk.green(this.offers.length)}`);
         return this.offers;
@@ -95,6 +94,6 @@ class ScrapperOLX {
             console.log(chalk.green("JSON file has been saved."));
         });
     };
-}
+};
 
 module.exports = ScrapperOLX;

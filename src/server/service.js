@@ -2,17 +2,13 @@ const url = require('url');
 const api = require('../api.js')
 
 exports.jobsRequest = async (req, res) => {
-    try{
+    try {
+        res.setHeader('Access-Control-Allow-Origin', "*");
         const reqUrl = url.parse(req.url, true);
-        let city
-        if (reqUrl.query.city) {
-            city = reqUrl.query.city
-        }
-
-        const response = await api.getAllOffers('ropczyce', 10)
-
+        const word = reqUrl.query.word
+        const pages = reqUrl.query.pages
+        let response = await api.getAllOffers(word, pages)
         res.statusCode = 200;
-        res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Content-Type', 'application/json');
         res.end(response);
     }
@@ -20,5 +16,5 @@ exports.jobsRequest = async (req, res) => {
         res.statusCode = 500;
         res.setHeader('Content-Type', 'text/plain');
         res.end('Something went wrong...');
-      }
+      };
 };
