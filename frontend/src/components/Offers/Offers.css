@@ -1,0 +1,14 @@
+.flex-offers {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 25px 10% 0 10%;
+    width: 100%;
+}
+
+@media (max-width: 1000px) {
+    .flex-offers {
+        justify-content: center;
+        margin: 0px 10%;
+    }
+}

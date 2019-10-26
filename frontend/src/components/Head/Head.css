@@ -1,0 +1,30 @@
+.head {
+    width: 100%;
+    padding: 20px 0px 0px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#search-bar-city {
+    border-radius: .28571429rem 0px 0px .28571429rem !important;
+}
+
+#search-bar-category{
+    border-radius: 0px !important;
+    border-left: 0px !important
+}
+
+#search-button {
+    border-radius: 0px .28571429rem .28571429rem 0px !important;
+}
+
+@media (max-width: 500px) {
+    #search-bar-category {
+        max-width: 100px !important;
+    }
+
+    #search-bar-city {
+        max-width: 100px !important;
+    }
+}

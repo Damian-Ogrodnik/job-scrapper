@@ -1,0 +1,28 @@
+.job-offer {
+    width: 48%;
+    margin-bottom: 2%;
+    background-color: whitesmoke;
+    padding: 10px;
+    margin: 10px 0px;
+}
+
+.job-offer-element {
+    padding: 10px;
+    width: 100%;
+    display: flex;
+}
+
+.job-offer-element-details {
+    width: 100%;
+}
+
+.shadow {
+    /* box-shadow: 0 8px 6px -6px black; */
+    box-shadow: 5px 10px 5px 0px rgba(174, 165, 165, 0.75);
+}
+
+@media (max-width: 1000px) {
+    .job-offer {
+        width: 90%
+    }
+}
