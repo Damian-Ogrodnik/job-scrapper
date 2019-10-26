@@ -5,9 +5,10 @@ exports.jobsRequest = async (req, res) => {
     try {
         res.setHeader('Access-Control-Allow-Origin', "*");
         const reqUrl = url.parse(req.url, true);
-        const word = reqUrl.query.word
-        const pages = reqUrl.query.pages
-        let response = await api.getAllOffers(word, pages)
+        const city = reqUrl.query.city;
+        const category = reqUrl.query.category;
+        const pages = reqUrl.query.pages;
+        let response = await api.getAllOffers(city,category, pages);
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         res.end(response);

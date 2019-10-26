@@ -10,7 +10,7 @@ class ScrapperOLX {
         this.offers = []
         this.pagesNum = pagesNum
         this.city = city
-        this.websiteUrl = city === undefined ? websiteUrl : `${websiteUrl}/${city}`
+        this.websiteUrl = websiteUrl
         this.offersHandlerSelector = offersHandlerSelector
         this.offerDetailsSelector = offerDetailsSelector
         this.jobNameSelector = jobNameSelector
