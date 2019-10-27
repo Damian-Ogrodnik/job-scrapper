@@ -4,7 +4,7 @@ import './Offer.css';
 const Offer = ({keyNumber, linkData, jobName, city, company}) => {
     const getCompany = (company) => {
         if (company){
-            let companyName = company.startsWith('Zobacz profil') ? company.replace('Zobacz profil','') : company
+            let companyName = company.startsWith('Zobacz profil') ? company.replace('Zobacz profil','') : company;
             return(
                 <div className = 'job-offer-element-details'>
                     <div className = 'job-offer-element-details'> 

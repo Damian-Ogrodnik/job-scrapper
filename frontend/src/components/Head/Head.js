@@ -11,20 +11,20 @@ class Head extends React.Component {
         this.state = {
             modalDisplay: false
 
-        }
+        };
     };
 
     changeColor = (e) => {
         let levels = this.pagesButtons.current.children
         for (let i = 1; i < levels.length; i++) {
-            levels[i].style.background = 'rgb(33,133,208)'
+            levels[i].style.background = 'rgb(33,133,208)';
         }
         e.style.background = 'rgb(13,113,187)';
     };
 
     displayModal = () => {
          if (this.state.modalDisplay){
-             return <InfoModal description={'Using big search scope can take a few minutes...'} />
+             return <InfoModal header={'Information'} description={'Using big search scope can take a few minutes...'} />
          }
     }
 
