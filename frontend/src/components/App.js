@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import './App.css';
 import Offers from './Offers/Offers';
 import Head from './Head/Head'
@@ -15,26 +16,24 @@ class App extends React.Component {
     };
 
     getOffers = async (city, category) => {
-        this.setState({loading: true, city: city}, () => {
-            let xhr = new XMLHttpRequest();
-            xhr.addEventListener('load', async () => {
-                this.setState({
-                    offers: xhr.response,
-                    loading: false,
-                    serverError: false,
-                    searchingStatus: 'finished'
+        this.setState({loading: true, city: city}, async () => {
+            await axios.get(`http://localhost:7000/jobs-search/?city=${this.state.city}&pages=${this.state.pages}&category=${category}`)
+                .then(response => {
+                    this.setState({
+                        offers: response.data,
+                        loading: false,
+                        serverError: false,
+                        searchingStatus: 'finished'
+                    })
                 })
-            })
-            xhr.onerror = () => {
-                this.setState({
-                    loading: false,
-                    serverError: true
+                .catch( () => {
+                    this.setState({
+                        loading: false,
+                        serverError: true
+                    })
                 })
-            }
-            xhr.open('GET', `http://localhost:3002/jobs-search/?city=${this.state.city}&pages=${this.state.pages}&category=${category}`);
-            xhr.send();
         })
-    }
+    };
 
     setNumOfPages = (e) => this.setState({pages: e.target.value});
 

@@ -13,7 +13,7 @@ class Offers extends React.Component {
         };
 
         renderError = () => {
-            if (this.props.loading === false &&  this.props.searchingStatus === 'finished' && this.props.offers === '[]'){
+            if (this.props.loading === false &&  this.props.searchingStatus === 'finished' && this.props.offers.length === 0){
                 return  <Error errorDescription ={'Oooops... Nothing found...'} advice={'Try to search another word.'} />
                     
             }
@@ -34,7 +34,7 @@ class Offers extends React.Component {
             } else {
                 let offersBlocks = []
                 if  (this.props.offers !== null){
-                    let offers = this.shuffleArray(JSON.parse(this.props.offers));
+                    let offers = this.shuffleArray(this.props.offers);
                     for (let i = 0; i < offers.length ; i++){
                         offersBlocks.push(
                             <Offer key={offers[i].jobName+i} keyNumber = {offers[i].jobName+i} linkData={offers[i].linkData} jobName = {offers[i].jobName} city={offers[i].city} company ={offers[i].company} />
