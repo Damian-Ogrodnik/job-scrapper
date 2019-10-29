@@ -74,7 +74,8 @@ class ScrapperOLX {
                     }),
                     this.page.click(this.nextPageSelector)
                 ]);
-            } catch {
+            } 
+            catch {
                 console.log(chalk.red('No more pages...'));
                 break
             }

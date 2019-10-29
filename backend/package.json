@@ -19,6 +19,8 @@
   "homepage": "https://github.com/dogrodnik/offer-scrapper#readme",
   "dependencies": {
     "chalk": "^2.4.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "nodemon": "^1.19.4",
     "puppeteer": "1.20.0"
   }
