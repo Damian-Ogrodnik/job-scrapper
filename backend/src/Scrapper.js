@@ -40,14 +40,13 @@ class ScrapperOLX {
                 const jobName = await offerDetails[0].$eval(this.jobNameSelector, el => el.innerText);
                 const city = await offerDetails[0].$eval(this.citySelector, el => el.innerText);
                 const description = await offerDetails[0].$eval(this.descriptionSelector, el => el.innerText);
-                let linkData
+                let linkData, company
                 if(this.website === 'pracuj.pl'){
                     const link = await offerDetails[0].$eval(this.linkSelector, el => el.getAttribute('href'));
                     linkData = `https://www.pracuj.pl/${link}`;
                 } else {
                     linkData = await offerDetails[0].$eval(this.linkSelector, el => el.getAttribute('href'));
                 }
-                let company
                 try{
                     company = await offerDetails[0].$eval(this.companySelector, el => el.innerText);
                 }
@@ -76,7 +75,7 @@ class ScrapperOLX {
                 ]);
             } 
             catch {
-                console.log(chalk.red('No more pages...'));
+                console.log(chalk.red('No more offers...'));
                 break
             }
         };
