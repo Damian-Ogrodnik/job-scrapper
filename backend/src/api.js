@@ -1,7 +1,7 @@
 const Scrapper = require('./Scrapper.js')
 
-const getOffers = async (websiteURL, website, city, numberOfPages, offersHandlerSelector, offerDetailsSelector, jobNameSelector, linkSelector, companySelector, citySelector, descriptionSelector, nextPageSelector) => {
-    const scrapper = new Scrapper(websiteURL, website, city, numberOfPages, offersHandlerSelector, offerDetailsSelector, jobNameSelector, linkSelector, companySelector, citySelector, descriptionSelector, nextPageSelector);
+const getOffers = async (...args) => {
+    const scrapper = new Scrapper(...args);
     await scrapper.init();
     return scrapper.getOffers();
 };

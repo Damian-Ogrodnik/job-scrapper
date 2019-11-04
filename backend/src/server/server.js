@@ -1,11 +1,22 @@
-const chalk = require('chalk');
-const server = require('./controller.js');
-const port = 3002;
+const cors = require('cors');
+const express = require('express');
+const mongoose = require('mongoose');
 
-server.listen(port, (error)  => {
-    if (error){
-        console.log(chalk.red('Something went wrong', error))
-    } else {
-        console.log(chalk.green('Server is listening on port ' + port + '...'))
-    }
-})
+const route = require('./routes/route');
+
+const app = express();
+const PORT = process.env.PORT || 7000;
+
+app.use(cors());
+app.use('/', route);
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/scrapper', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+});
+
+app.listen(PORT, () => {
+    console.log('Server is listening...');
+});
