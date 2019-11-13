@@ -1,22 +1,23 @@
-const cors = require('cors');
-const express = require('express');
-const mongoose = require('mongoose');
+const cors = require("cors");
+const express = require("express");
+const mongoose = require("mongoose");
 
-const route = require('./routes/route');
+const config = require("./config");
+const route = require("./routes/route");
 
 const app = express();
-const PORT = process.env.PORT || 7000;
+const PORT = process.env.PORT || config.PORT;
 
 app.use(cors());
-app.use('/', route);
+app.use("/", route);
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/scrapper', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
+mongoose.connect(config.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
 });
 
 app.listen(PORT, () => {
-    console.log('Server is listening...');
+  console.log("Server is listening...");
 });
