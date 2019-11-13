@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import axios from 'axios';
+import axios from '../axios/axiosSettings';
 import './App.css';
 import {Offers} from './Offers';
 import {Head} from './Head';
@@ -13,7 +13,7 @@ const App = () => {
 
     const getOffers = async (city, category) => {
         await setLoading(true);
-        await axios.get(`http://localhost:7000/jobs-search/?city=${city}&pages=${pages}&category=${category}`)
+        await axios.get(`/jobs-search/?city=${city}&pages=${pages}&category=${category}`)
             .then(response => {
                 setOffers(response.data);
                 setLoading(false);
