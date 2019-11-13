@@ -30,4 +30,4 @@ const Offer = ({keyNumber, linkData, jobName, city, company}) => {
     )
 }      
 
-export default Offer;
+export {Offer};

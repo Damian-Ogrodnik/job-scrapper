@@ -13,4 +13,4 @@ const Error = ({errorDescription, advice}) => {
     )
 }      
 
-export default Error;
+export {Error};

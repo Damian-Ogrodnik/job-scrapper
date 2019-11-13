@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal } from 'semantic-ui-react'
+import { Modal } from 'semantic-ui-react';
 
 const InfoModal = ({header, description}) => {
     return (  
@@ -14,4 +14,4 @@ const InfoModal = ({header, description}) => {
     )
 }      
 
-export default InfoModal;
+export {InfoModal};

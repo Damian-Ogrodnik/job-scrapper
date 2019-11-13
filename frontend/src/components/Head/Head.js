@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react';
-import InfoModal from '../Modal/InfoModal'
+import {InfoModal} from '../Modal/InfoModal'
 import './Head.css';
 
 const Head = ({setNumOfPages, getOffers}) => {
@@ -47,4 +47,4 @@ const Head = ({setNumOfPages, getOffers}) => {
 }     
 
 
-export default Head;
+export {Head};

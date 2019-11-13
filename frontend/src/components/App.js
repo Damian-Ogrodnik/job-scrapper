@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import './App.css';
-import Offers from './Offers/Offers';
-import Head from './Head/Head';
+import {Offers} from './Offers';
+import {Head} from './Head';
 
 const App = () => {
     const [offers, setOffers] = useState(null);

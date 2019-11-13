@@ -1,7 +1,7 @@
 import React from 'react';
 import './Offers.css';
-import Offer from '../Offer/Offer';
-import Error from '../Error/Error'
+import {Offer} from '../Offer';
+import {Error} from '../Error';
 
 const Offers = ({loading, searchingStatus, offers, serverError}) => {
         const shuffleArray = (array) => {
@@ -52,4 +52,4 @@ const Offers = ({loading, searchingStatus, offers, serverError}) => {
         
 };
 
-export default Offers;
+export {Offers};
