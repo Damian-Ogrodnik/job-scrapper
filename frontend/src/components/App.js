@@ -1,50 +1,39 @@
-import React from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import './App.css';
 import Offers from './Offers/Offers';
-import Head from './Head/Head'
+import Head from './Head/Head';
 
-class App extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            offers: null,
-            loading: false,
-            searchingStatus: null,
-            pages: 1
-        }
+const App = () => {
+    const [offers, setOffers] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [searchingStatus, setStatus] = useState(null);
+    const [pages, setPages] = useState(1);
+    const [serverError, setError] = useState(false);
+
+    const getOffers = async (city, category) => {
+        await setLoading(true);
+        await axios.get(`http://localhost:7000/jobs-search/?city=${city}&pages=${pages}&category=${category}`)
+            .then(response => {
+                setOffers(response.data);
+                setLoading(false);
+                setError(false);
+                setStatus('finished');
+            })
+            .catch(() => {
+                setLoading(false);
+                setError(true);
+            })
     };
 
-    getOffers = async (city, category) => {
-        this.setState({loading: true, city: city}, async () => {
-            await axios.get(`http://localhost:7000/jobs-search/?city=${this.state.city}&pages=${this.state.pages}&category=${category}`)
-                .then(response => {
-                    this.setState({
-                        offers: response.data,
-                        loading: false,
-                        serverError: false,
-                        searchingStatus: 'finished'
-                    })
-                })
-                .catch( () => {
-                    this.setState({
-                        loading: false,
-                        serverError: true
-                    })
-                })
-        })
-    };
+    const setNumOfPages = (e) => setPages(e.target.value);
 
-    setNumOfPages = (e) => this.setState({pages: e.target.value});
-
-    render(){
-        return (
+    return (
         <div className='ui grid'>  
-            <Head setNumOfPages = {this.setNumOfPages} changeColor = {this.changeColor} getOffers={this.getOffers}/>
-            <Offers searchingStatus = {this.state.searchingStatus} offers = {this.state.offers} loading = {this.state.loading} serverError = {this.state.serverError}></Offers>
+            <Head setNumOfPages={setNumOfPages}  getOffers={getOffers}/>
+            <Offers searchingStatus={searchingStatus} offers={offers} loading={loading} serverError={serverError} />
         </div>  
         )
-    }
-};
+}
 
 export default App;
