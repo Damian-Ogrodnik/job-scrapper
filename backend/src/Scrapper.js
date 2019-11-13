@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 const chalk = require('chalk');
 
-class ScrapperOLX {
+class Scrapper {
     constructor(websiteUrl, website, city = undefined, pagesNum = Infinity, offersHandlerSelector, offerDetailsSelector, jobNameSelector, linkSelector, companySelector, citySelector, descriptionSelector, nextPageSelector) {
         this.website = website
         this.browser = null
@@ -51,7 +51,7 @@ class ScrapperOLX {
                     company = await offerDetails[0].$eval(this.companySelector, el => el.innerText);
                 }
                 catch(err){
-                    company = ''
+                    company = '';
                 }
                 return {
                     jobName,
@@ -96,4 +96,4 @@ class ScrapperOLX {
     };
 };
 
-module.exports = ScrapperOLX;
+module.exports = Scrapper;

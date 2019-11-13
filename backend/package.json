@@ -21,6 +21,7 @@
     "chalk": "^2.4.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "mongoose": "^5.7.10",
     "nodemon": "^1.19.4",
     "puppeteer": "1.20.0"
   }
