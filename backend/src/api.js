@@ -1,32 +1,4 @@
 const Scrapper = require("./Scrapper.js");
-const olxData = [
-  OLXlink,
-  "OLX",
-  city,
-  numberOfPages,
-  "table#offers_table > tbody > .wrap",
-  ".offer-wrapper",
-  "h3",
-  "h3 > a",
-  null,
-  "div > p > small > span",
-  "tr > td > div > p",
-  ".next > a"
-];
-const pracujData = [
-  pracujLink,
-  "pracuj.pl",
-  city,
-  numberOfPages,
-  "#results > ul > .results__list-container-item",
-  "div  > .offer__info",
-  "h3",
-  ".offer-details__title-link",
-  "p",
-  ".offer-labels__item",
-  ".offer-labels:last-of-type",
-  "li.pagination_element--next > a"
-];
 
 const getOffers = async (...args) => {
   const scrapper = new Scrapper(...args);
@@ -35,7 +7,6 @@ const getOffers = async (...args) => {
 };
 
 module.exports.getAllOffers = async (city, category, numberOfPages) => {
-  let OLXlink, pracujLink;
   switch (true) {
     case city && category !== "undefined":
       OLXlink = `https://www.olx.pl/praca/${city}/q-${category}/`;
@@ -53,6 +24,34 @@ module.exports.getAllOffers = async (city, category, numberOfPages) => {
       OLXlink = "https://www.olx.pl/praca";
       pracujLink = `https://www.pracuj.pl/praca/`;
   }
+  const olxData = [
+    OLXlink,
+    "OLX",
+    city,
+    numberOfPages,
+    "table#offers_table > tbody > .wrap",
+    ".offer-wrapper",
+    "h3",
+    "h3 > a",
+    null,
+    "div > p > small > span",
+    "tr > td > div > p",
+    ".next > a"
+  ];
+  const pracujData = [
+    pracujLink,
+    "pracuj.pl",
+    city,
+    numberOfPages,
+    "#results > ul > .results__list-container-item",
+    "div  > .offer__info",
+    "h3",
+    ".offer-details__title-link",
+    "p",
+    ".offer-labels__item",
+    ".offer-labels:last-of-type",
+    "li.pagination_element--next > a"
+  ];
   const OLX = await getOffers(...olxData);
   const pracujPL = await getOffers(...pracujData);
   return [...OLX, ...pracujPL];
