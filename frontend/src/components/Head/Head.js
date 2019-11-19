@@ -32,7 +32,10 @@ const Head = ({ setNumOfPages, getOffers }) => {
         <div className="head">
           <h1 className="ui header">Job Scrapper</h1>
         </div>
-        <div style={{ minWidth: "250px", margin: "20px 0px 0px 0px" }}>
+        <div
+          className="searchScope"
+          style={{ minWidth: "250px", margin: "20px 0px 0px 0px" }}
+        >
           <div
             ref={pagesButtons}
             id="pages-buttons"
