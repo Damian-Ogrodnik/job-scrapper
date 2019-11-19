@@ -20,10 +20,10 @@ router.get("/jobs-search", async (req, res) => {
   let { city, pages, category } = req.query;
   city = city.toLowerCase();
   category = category.toLowerCase();
-  const jobOffer = await Search.findOne({ name: `${city}-${category}` });
+  let jobOffer = await Search.findOne({ name: `${city}-${category}` });
   if (jobOffer) {
     const timeMinutes = new Date(Date.now() - jobOffer.date).getMinutes();
-    if (timeMinutes < 10 && timeMinutes > 0) {
+    if (timeMinutes < 60 && timeMinutes >= 0) {
       res.status(200).send(jobOffer.data);
     } else {
       const response = await api.getAllOffers(city, category, pages);
