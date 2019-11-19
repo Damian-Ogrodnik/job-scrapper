@@ -1,1 +1,1 @@
-export {InfoModal} from './InfoModal';
+export { InfoModal } from "./InfoModal";

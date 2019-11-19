@@ -1,22 +1,22 @@
 .nothing-found {
-    padding: 150px 0px;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+  padding: 150px 0px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .nothing-found-element {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .nothing-found-element.icon {
-    padding: 0px 0px 10px 0px;
-    color: royalblue;
+  padding: 0px 0px 10px 0px;
+  color: royalblue;
 }

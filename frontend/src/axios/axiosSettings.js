@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
-const URL = 'http://localhost:7000';
+const URL = "http://localhost:7000";
 
 export default axios.create({
-    baseURL: URL
+  baseURL: URL
 });
