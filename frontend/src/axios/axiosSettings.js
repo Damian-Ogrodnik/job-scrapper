@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const PORT = process.env.PORT || 7000;
-const URL = `http://localhost:${PORT}`;
+const URL = `https://job-scrapper-dogrodnik.herokuapp.com`;
 
 export default axios.create({
   baseURL: URL
