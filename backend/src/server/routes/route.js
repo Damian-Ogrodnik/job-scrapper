@@ -23,7 +23,8 @@ router.get("/jobs-search", async (req, res) => {
   let jobOffer = await Search.findOne({ name: `${city}-${category}` });
   if (jobOffer) {
     const timeMinutes = new Date(Date.now() - jobOffer.date).getMinutes();
-    if (timeMinutes < 60 && timeMinutes >= 0) {
+    console.log(timeMinutes);
+    if (timeMinutes < 60 && timeMinutes > 0) {
       res.status(200).send(jobOffer.data);
     } else {
       const response = await api.getAllOffers(city, category, pages);
