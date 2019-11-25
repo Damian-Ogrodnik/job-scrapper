@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "http://localhost:7000";
+const URL = `https://job-scrapper-dogrodnik.herokuapp.com`;
 
 export default axios.create({
   baseURL: URL

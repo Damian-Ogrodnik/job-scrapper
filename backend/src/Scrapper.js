@@ -36,7 +36,8 @@ class Scrapper {
 
   async init() {
     this.browser = await puppeteer.launch({
-      headless: true
+      headless: true,
+      args: ["--no-sandbox"]
     });
     this.page = await this.browser.newPage();
     await this.page.goto(this.websiteUrl, {

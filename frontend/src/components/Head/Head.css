@@ -24,6 +24,10 @@
     max-width: 100px !important;
   }
 
+  #pages-buttons > .button {
+    max-width: 80px !important;
+  }
+
   #search-bar-city {
     max-width: 100px !important;
   }
