@@ -1,0 +1,33 @@
+{
+  "name": "offer-scrapper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backend/src/server/server.js",
+  "scripts": {
+    "start": "node backend/src/server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dogrodnik/offer-scrapper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dogrodnik/offer-scrapper/issues"
+  },
+  "homepage": "https://github.com/dogrodnik/offer-scrapper#readme",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.10",
+    "nodemon": "^1.19.4",
+    "puppeteer": "1.20.0",
+    "axios": "^0.19.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-scripts": "3.2.0",
+    "semantic-ui-react": "^0.88.1"
+  }
+}
