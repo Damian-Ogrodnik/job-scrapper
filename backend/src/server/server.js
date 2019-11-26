@@ -6,10 +6,11 @@ const config = require("./config");
 const route = require("./routes/route");
 
 const app = express();
-const PORT = process.env.PORT || config.PORT;
 
 app.use(cors());
 app.use("/", route);
+
+const PORT = process.env.PORT || config.PORT;
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.MONGO_URI, {
