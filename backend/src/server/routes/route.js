@@ -22,9 +22,9 @@ router.get("/jobs-search", async (req, res) => {
   category = category.toLowerCase();
   let jobOffer = await Search.findOne({ name: `${city}-${category}` });
   if (jobOffer) {
-    const timeMinutes = new Date(Date.now() - jobOffer.date).getMinutes();
-    console.log(timeMinutes);
-    if (timeMinutes < 60 && timeMinutes > 0) {
+    let time = Date.now() - new Date(jobOffer.date);
+    let timeMinutes = Math.floor(time / 60000);
+    if (timeMinutes >= 0 && timeMinutes < 60) {
       res.status(200).send(jobOffer.data);
     } else {
       const response = await api.getAllOffers(city, category, pages);
