@@ -1,4 +1,4 @@
-const api = require("../../Scrappers/api.js");
+const api = require("../../scrappers/api.js");
 const Search = require("../models/Data");
 
 exports.checkOffers = async function(req, res) {
