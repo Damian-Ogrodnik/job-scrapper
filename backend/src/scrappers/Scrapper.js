@@ -17,13 +17,10 @@ class Scrapper {
     descriptionSelector,
     nextPageSelector
   ) {
-    this.website = website;
-    this.browser = null;
-    this.page = null;
-    this.offers = [];
-    this.pagesNum = pagesNum;
-    this.city = city;
     this.websiteUrl = websiteUrl;
+    this.website = website;
+    this.city = city;
+    this.pagesNum = pagesNum;
     this.offersHandlerSelector = offersHandlerSelector;
     this.offerDetailsSelector = offerDetailsSelector;
     this.jobNameSelector = jobNameSelector;
@@ -32,6 +29,9 @@ class Scrapper {
     this.citySelector = citySelector;
     this.descriptionSelector = descriptionSelector;
     this.nextPageSelector = nextPageSelector;
+    this.browser = null;
+    this.page = null;
+    this.offers = [];
   }
 
   async init() {
@@ -51,6 +51,7 @@ class Scrapper {
       const offersHandler = await this.page.$$(this.offersHandlerSelector);
       const offersData = offersHandler.map(async offer => {
         const offerDetails = await offer.$$(this.offerDetailsSelector);
+
         const jobName = await offerDetails[0].$eval(
           this.jobNameSelector,
           el => el.innerText
@@ -63,25 +64,19 @@ class Scrapper {
           this.descriptionSelector,
           el => el.innerText
         );
-        let linkData, company;
-        if (this.website === "pracuj.pl") {
-          const link = await offerDetails[0].$eval(this.linkSelector, el =>
-            el.getAttribute("href")
-          );
-          linkData = `https://www.pracuj.pl/${link}`;
-        } else {
-          linkData = await offerDetails[0].$eval(this.linkSelector, el =>
-            el.getAttribute("href")
-          );
-        }
-        try {
-          company = await offerDetails[0].$eval(
-            this.companySelector,
-            el => el.innerText
-          );
-        } catch (err) {
-          company = "";
-        }
+        let linkData, link, company;
+        this.website === "pracuj.pl"
+          ? ((link = await offerDetails[0].$eval(this.linkSelector, el =>
+              el.getAttribute("href")
+            )),
+            (linkData = `https://www.pracuj.pl/${link}`),
+            (company = await offerDetails[0].$eval(
+              this.companySelector,
+              el => el.innerText
+            )))
+          : (linkData = await offerDetails[0].$eval(this.linkSelector, el =>
+              el.getAttribute("href")
+            ));
         return {
           jobName,
           company,
@@ -95,6 +90,7 @@ class Scrapper {
           this.offers.push(offer);
         });
       });
+
       try {
         await Promise.all([
           this.page.waitForNavigation({
@@ -107,6 +103,7 @@ class Scrapper {
         break;
       }
     }
+
     await this.browser.close();
     console.log(`Total offers founded: ${chalk.green(this.offers.length)}`);
     return this.offers;
